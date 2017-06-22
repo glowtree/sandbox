@@ -13,8 +13,8 @@ matrix:
       language: generic
       env: pyver=python3   
 
-before-install:
-  - echo before-install...
+install:
+  - echo install...
   - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("$pyver" == "python3") ]]; then brew install $pyver;echo done installing python; fi
 
 script:
