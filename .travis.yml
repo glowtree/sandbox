@@ -15,7 +15,7 @@ matrix:
 
 before-install:
   - echo before-install...
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install $pyver;echo done installing python; fi
+  - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("$pyver" == "python3") ]]; then brew install $pyver;echo done installing python; fi
 
 script:
   - $pyver -c "import struct; print('python says it\'s a {0}bit machine'.format(struct.calcsize('P') * 8))"
