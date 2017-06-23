@@ -3,9 +3,9 @@ language: python
 
 matrix:
   include:
-    - os: linux
-      language: generic
-      env: pyver=python
+    # - os: linux
+    #   language: generic
+    #   env: pyver=python
     - os: osx
       language: generic
       env: pyver=python
@@ -14,8 +14,9 @@ matrix:
       env: pyver=python3   
 
 install:
-  - echo install...
-  - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("$pyver" == "python3") ]]; then brew install $pyver;echo done installing python; fi
+  - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("$pyver" == "python3") ]]; then brew install $pyver; fi
+  - $pyver --version
 
 script:
-  - $pyver -c "import struct; print('python says it\'s a {0}bit machine'.format(struct.calcsize('P') * 8))"
+  - $pyver -c "import sys,struct; print('python v{0}.{1}.{2} says it\'s a {3}bit machine'\
+  .format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro, struct.calcsize('P') * 8))"
